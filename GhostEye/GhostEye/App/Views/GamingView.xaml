@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="GhostEye.App.Views.GamingView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:loc="clr-namespace:GhostEye.App.Localization" xmlns:controls="clr-namespace:GhostEye.App.Controls" xmlns:views="clr-namespace:GhostEye.App.Views">
+  <ScrollViewer Padding="0,0,8,20">
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="16" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <StackPanel Grid.Column="0">
+        <ContentControl Margin="0,0,0,16" Style="{StaticResource Card}" DataContext="{Binding Boost}">
+          <StackPanel>
+            <Grid>
+              <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Style="{StaticResource H2}" Text="{loc:Tr boost.title}" />
+                <controls:InfoTip Margin="8,0,0,0" Header="{loc:Tr boost.title}" Summary="{loc:Tr boost.info}" />
+              </StackPanel>
+              <Border Padding="8,2" HorizontalAlignment="Right" VerticalAlignment="Center" BorderBrush="{StaticResource GoodBrush}" BorderThickness="1" CornerRadius="{StaticResource BadgeRadius}" Visibility="{Binding IsActive, Converter={StaticResource BoolToVis}}">
+                <TextBlock Style="{StaticResource Tag}" Foreground="{StaticResource GoodBrush}" Text="{Binding ActiveSince}" />
+              </Border>
+            </Grid>
+            <StackPanel Margin="0,12,0,0" Visibility="{Binding IsInactive, Converter={StaticResource BoolToVis}}">
+              <StackPanel Margin="0,4" Orientation="Horizontal">
+                <CheckBox Style="{StaticResource AccentCheck}" IsChecked="{Binding SwitchPowerPlan, Mode=TwoWay}" />
+                <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Style="{StaticResource Body}" Text="{loc:Tr boost.option.plan}" />
+              </StackPanel>
+              <StackPanel Margin="0,4" Orientation="Horizontal">
+                <CheckBox Style="{StaticResource AccentCheck}" IsChecked="{Binding PauseUpdates, Mode=TwoWay}" />
+                <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Style="{StaticResource Body}" Text="{loc:Tr boost.option.updates}" />
+              </StackPanel>
+              <StackPanel Margin="0,4" Orientation="Horizontal">
+                <CheckBox Style="{StaticResource AccentCheck}" IsChecked="{Binding FreeMemory, Mode=TwoWay}" />
+                <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Style="{StaticResource Body}" Text="{loc:Tr boost.option.memory}" />
+              </StackPanel>
+              <TextBlock Margin="0,10,0,4" Style="{StaticResource Tag}" Text="{loc:Tr boost.appsTitle}" Visibility="{Binding HasApps, Converter={StaticResource BoolToVis}}" />
+              <TextBlock Margin="0,10,0,4" Style="{StaticResource Caption}" Text="{loc:Tr boost.noApps}" Visibility="{Binding HasApps, Converter={StaticResource InverseBoolToVis}}" />
+              <ItemsControl ItemsSource="{Binding Apps}">
+                <ItemsControl.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <WrapPanel />
+                  </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                    <StackPanel Margin="0,3,16,3" Orientation="Horizontal">
+                      <CheckBox Style="{StaticResource AccentCheck}" IsChecked="{Binding IsSelected, Mode=TwoWay}" />
+                      <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource Caption}" Text="{Binding Name}" />
+                    </StackPanel>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+            </StackPanel>
+            <StackPanel Margin="0,12,0,0" Orientation="Horizontal" Visibility="{Binding IsActive, Converter={StaticResource BoolToVis}}">
+              <CheckBox Style="{StaticResource AccentCheck}" IsChecked="{Binding ReopenApps, Mode=TwoWay}" />
+              <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Style="{StaticResource Body}" Text="{loc:Tr boost.option.reopen}" />
+            </StackPanel>
+            <TextBlock Margin="0,12,0,0" Style="{StaticResource Caption}" Foreground="{StaticResource AccentBrush}" TextWrapping="Wrap" Text="{Binding ResultMessage}" Visibility="{Binding ResultMessage, Converter={StaticResource StringToVis}}" />
+            <Grid Margin="0,14,0,0">
+              <Button HorizontalAlignment="Stretch" Style="{StaticResource PrimaryButton}" Command="{Binding StartCommand}" Content="{loc:Tr boost.start}" IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBool}}" Visibility="{Binding IsInactive, Converter={StaticResource BoolToVis}}" />
+              <Button HorizontalAlignment="Stretch" Style="{StaticResource DangerButton}" Command="{Binding StopCommand}" Content="{loc:Tr boost.stop}" IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBool}}" Visibility="{Binding IsActive, Converter={StaticResource BoolToVis}}" />
+            </Grid>
+          </StackPanel>
+        </ContentControl>
+        <controls:TweakCategoryPanel Category="{Binding Category}" />
+        <ContentControl Margin="0,16,0,0" Padding="18,14" Style="{StaticResource Card}">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel VerticalAlignment="Center" Margin="0,0,16,0">
+              <TextBlock Style="{StaticResource Body}" Text="{Binding SelectionSummary}" Visibility="{Binding SelectionSummary, Converter={StaticResource StringToVis}}" />
+              <TextBlock Margin="0,3,0,0" Style="{StaticResource Caption}" Foreground="{StaticResource AccentBrush}" Text="{Binding ResultMessage}" Visibility="{Binding ResultMessage, Converter={StaticResource StringToVis}}" />
+            </StackPanel>
+            <Button Grid.Column="1" Style="{StaticResource PrimaryButton}" Command="{Binding ApplyCommand}" Content="{loc:Tr common.apply}" IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBool}}" />
+          </Grid>
+        </ContentControl>
+      </StackPanel>
+      <StackPanel Grid.Column="2">
+        <ContentControl VerticalAlignment="Top" Style="{StaticResource Card}" DataContext="{Binding Benchmark}">
+          <StackPanel>
+            <Grid>
+              <TextBlock Style="{StaticResource H2}" Text="{loc:Tr benchmark.title}" />
+              <TextBlock HorizontalAlignment="Right" Style="{StaticResource Tag}" Text="{loc:Tr benchmark.tag}" />
+            </Grid>
+            <TextBlock Margin="0,6,0,0" Style="{StaticResource Tag}" Foreground="{StaticResource AccentDimBrush}" Text="{Binding BaselineLabel}" Visibility="{Binding HasBaseline, Converter={StaticResource BoolToVis}}" />
+            <TextBlock Margin="0,14,0,0" Style="{StaticResource Caption}" Text="{Binding EmptyMessage}" Visibility="{Binding EmptyMessage, Converter={StaticResource StringToVis}}" />
+            <TextBlock Margin="0,10,0,0" Style="{StaticResource Caption}" Foreground="{StaticResource AccentBrush}" Text="{Binding StatusMessage}" Visibility="{Binding StatusMessage, Converter={StaticResource StringToVis}}" />
+            <ItemsControl Margin="0,14,0,0" ItemsSource="{Binding Rows}" Visibility="{Binding HasRows, Converter={StaticResource BoolToVis}}">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <StackPanel>
+                    <Border Style="{StaticResource RowDivider}" Margin="0,9,0,0" />
+                    <Grid Margin="0,10,0,0">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                      </Grid.ColumnDefinitions>
+                      <TextBlock VerticalAlignment="Center" Style="{StaticResource Body}" Text="{Binding Metric}" />
+                      <TextBlock Grid.Column="1" MinWidth="70" VerticalAlignment="Center" TextAlignment="Right" Style="{StaticResource Metric}" Foreground="{StaticResource TextDimBrush}" Text="{Binding Before}" />
+                      <TextBlock Grid.Column="2" MinWidth="70" VerticalAlignment="Center" TextAlignment="Right" Style="{StaticResource Metric}" Foreground="{StaticResource TextBrush}" Text="{Binding After}" />
+                      <TextBlock Grid.Column="3" MinWidth="72" VerticalAlignment="Center" TextAlignment="Right" Text="{Binding Delta}">
+                        <FrameworkElement.Style>
+                          <Style BasedOn="{StaticResource Metric}" TargetType="{x:Type TextBlock}">
+                            <Setter Property="Foreground" Value="{StaticResource TextDimBrush}" />
+                            <Style.Triggers>
+                              <DataTrigger Value="True" Binding="{Binding IsImprovement}">
+                                <Setter Property="Foreground" Value="{StaticResource GoodBrush}" />
+                              </DataTrigger>
+                            </Style.Triggers>
+                          </Style>
+                        </FrameworkElement.Style>
+                      </TextBlock>
+                    </Grid>
+                  </StackPanel>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <StackPanel Margin="0,18,0,0" Orientation="Horizontal">
+              <Button Padding="14,8" Style="{StaticResource PrimaryButton}" Command="{Binding CaptureBaselineCommand}" Content="{loc:Tr benchmark.captureBaseline}" IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBool}}" Visibility="{Binding HasBaseline, Converter={StaticResource InverseBoolToVis}}" />
+              <Button Padding="14,8" Style="{StaticResource PrimaryButton}" Command="{Binding CompareCommand}" Content="{loc:Tr benchmark.measureAgain}" IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBool}}" Visibility="{Binding HasBaseline, Converter={StaticResource BoolToVis}}" />
+              <Button Margin="8,0,0,0" Padding="12,8" Style="{StaticResource GhostButton}" Command="{Binding ClearBaselineCommand}" Content="{loc:Tr common.reset}" Visibility="{Binding HasBaseline, Converter={StaticResource BoolToVis}}" />
+            </StackPanel>
+          </StackPanel>
+        </ContentControl>
+        <ContentControl Margin="0,16,0,0" Style="{StaticResource Card}" DataContext="{Binding Fps}">
+          <StackPanel>
+            <Grid>
+              <StackPanel Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Style="{StaticResource H2}" Text="{loc:Tr fps.title}" />
+                <controls:InfoTip Margin="8,0,0,0" Header="{loc:Tr fps.title}" Summary="{loc:Tr fps.info}" />
+              </StackPanel>
+              <Button Padding="10,5" HorizontalAlignment="Right" Style="{StaticResource GhostButton}" Command="{Binding RefreshTargetsCommand}" Content="{loc:Tr common.refresh}" />
+            </Grid>
+            <TextBlock Margin="0,12,0,4" Style="{StaticResource Tag}" Text="{loc:Tr fps.target}" />
+            <TextBlock Style="{StaticResource Caption}" TextWrapping="Wrap" Text="{loc:Tr fps.noTargets}" Visibility="{Binding HasTargets, Converter={StaticResource InverseBoolToVis}}" />
+            <ItemsControl MaxHeight="150" ItemsSource="{Binding Targets}">
+              <Control.Template>
+                <ControlTemplate TargetType="{x:Type ItemsControl}">
+                  <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ItemsPresenter />
+                  </ScrollViewer>
+                </ControlTemplate>
+              </Control.Template>
+              <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                  <WrapPanel />
+                </ItemsPanelTemplate>
+              </ItemsControl.ItemsPanel>
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <ToggleButton Margin="0,0,6,6" Padding="10,5" Style="{StaticResource ChipToggle}" Command="{Binding DataContext.SelectTargetCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" IsChecked="{Binding IsSelected, Mode=OneWay}">
+                    <TextBlock MaxWidth="220" Style="{StaticResource Caption}" TextTrimming="CharacterEllipsis" Text="{Binding Name}" />
+                  </ToggleButton>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <StackPanel Margin="0,8,0,0" Orientation="Horizontal">
+              <TextBlock Margin="0,0,8,0" VerticalAlignment="Center" Style="{StaticResource Caption}" Text="{loc:Tr fps.duration}" />
+              <ToggleButton Padding="12,5" CommandParameter="30" Style="{StaticResource ChipToggle}" Command="{Binding SetDurationCommand}" IsChecked="{Binding Is30, Mode=OneWay}">
+                <TextBlock Style="{StaticResource Caption}" Text="30 s" />
+              </ToggleButton>
+              <ToggleButton Margin="6,0,0,0" Padding="12,5" CommandParameter="60" Style="{StaticResource ChipToggle}" Command="{Binding SetDurationCommand}" IsChecked="{Binding Is60, Mode=OneWay}">
+                <TextBlock Style="{StaticResource Caption}" Text="60 s" />
+              </ToggleButton>
+              <ToggleButton Margin="6,0,0,0" Padding="12,5" CommandParameter="120" Style="{StaticResource ChipToggle}" Command="{Binding SetDurationCommand}" IsChecked="{Binding Is120, Mode=OneWay}">
+                <TextBlock Style="{StaticResource Caption}" Text="120 s" />
+              </ToggleButton>
+            </StackPanel>
+            <TextBlock Margin="0,10,0,0" Style="{StaticResource Caption}" Foreground="{StaticResource AccentBrush}" TextWrapping="Wrap" Text="{Binding StatusMessage}" Visibility="{Binding StatusMessage, Converter={StaticResource StringToVis}}" />
+            <Button Margin="0,12,0,0" HorizontalAlignment="Stretch" Style="{StaticResource PrimaryButton}" Command="{Binding CaptureCommand}" Content="{loc:Tr fps.start}" IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBool}}" />
+            <ItemsControl Margin="0,10,0,0" ItemsSource="{Binding History}" Visibility="{Binding HasHistory, Converter={StaticResource BoolToVis}}">
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <StackPanel>
+                    <Border Style="{StaticResource RowDivider}" Margin="0,8,0,0" />
+                    <Grid Margin="0,8,0,0">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                      </Grid.ColumnDefinitions>
+                      <StackPanel>
+                        <TextBlock Style="{StaticResource BodyStrong}" TextTrimming="CharacterEllipsis" Text="{Binding GameName}" />
+                        <TextBlock Style="{StaticResource Caption}" Text="{Binding DateLabel}" />
+                      </StackPanel>
+                      <StackPanel Grid.Column="1" Margin="12,0,0,0" HorizontalAlignment="Right">
+                        <TextBlock HorizontalAlignment="Right" Style="{StaticResource Metric}" Text="{Binding AverageLabel}" />
+                        <TextBlock HorizontalAlignment="Right" Style="{StaticResource Caption}" Text="{Binding LowLabel}" />
+                        <TextBlock HorizontalAlignment="Right" Text="{Binding DeltaLabel}" Visibility="{Binding HasDelta, Converter={StaticResource BoolToVis}}">
+                          <FrameworkElement.Style>
+                            <Style BasedOn="{StaticResource Caption}" TargetType="{x:Type TextBlock}">
+                              <Setter Property="Foreground" Value="{StaticResource TextDimBrush}" />
+                              <Style.Triggers>
+                                <DataTrigger Value="True" Binding="{Binding IsImprovement}">
+                                  <Setter Property="Foreground" Value="{StaticResource GoodBrush}" />
+                                </DataTrigger>
+                              </Style.Triggers>
+                            </Style>
+                          </FrameworkElement.Style>
+                        </TextBlock>
+                      </StackPanel>
+                      <Button Grid.Column="2" Margin="8,0,0,0" Padding="6,2" VerticalAlignment="Center" Content="×" Style="{StaticResource GhostButton}" Command="{Binding DataContext.DeleteEntryCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" ToolTip="{loc:Tr common.delete}" />
+                    </Grid>
+                  </StackPanel>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </StackPanel>
+        </ContentControl>
+        <ContentControl Margin="0,16,0,0" Style="{StaticResource Card}" DataContext="{Binding AutoBoost}">
+          <StackPanel>
+            <Grid>
+              <StackPanel Margin="0,0,60,0">
+                <StackPanel Orientation="Horizontal">
+                  <TextBlock VerticalAlignment="Center" Style="{StaticResource H2}" Text="{loc:Tr autoBoost.title}" />
+                  <controls:InfoTip Margin="8,0,0,0" Header="{loc:Tr autoBoost.title}" Summary="{loc:Tr autoBoost.info}" />
+                </StackPanel>
+                <TextBlock Margin="0,6,0,0" Style="{StaticResource Caption}" TextWrapping="Wrap" Text="{loc:Tr autoBoost.desc}" />
+              </StackPanel>
+              <ToggleButton HorizontalAlignment="Right" VerticalAlignment="Top" Style="{StaticResource AccentToggle}" IsChecked="{Binding IsEnabled, Mode=TwoWay}" />
+            </Grid>
+            <TextBlock Margin="0,8,0,0" Style="{StaticResource Caption}" Foreground="{StaticResource WarnBrush}" TextWrapping="Wrap" Text="{loc:Tr autoBoost.backgroundHint}" Visibility="{Binding ShowBackgroundHint, Converter={StaticResource BoolToVis}}" />
+            <Grid Margin="0,12,0,0">
+              <TextBlock VerticalAlignment="Center" Style="{StaticResource Tag}" Text="{Binding GamesSummary}" />
+              <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button Padding="10,5" Style="{StaticResource GhostButton}" Command="{Binding RefreshCommand}" Content="{loc:Tr common.refresh}" />
+                <Button Margin="6,0,0,0" Padding="10,5" Style="{StaticResource GhostButton}" Command="{Binding AddGameCommand}" Content="{loc:Tr autoBoost.add}" />
+              </StackPanel>
+            </Grid>
+            <TextBlock Margin="0,8,0,0" Style="{StaticResource Caption}" TextWrapping="Wrap" Text="{loc:Tr autoBoost.none}" Visibility="{Binding HasGames, Converter={StaticResource InverseBoolToVis}}" />
+            <ItemsControl Margin="0,6,0,0" MaxHeight="260" ItemsSource="{Binding Games}">
+              <Control.Template>
+                <ControlTemplate TargetType="{x:Type ItemsControl}">
+                  <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ItemsPresenter />
+                  </ScrollViewer>
+                </ControlTemplate>
+              </Control.Template>
+              <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                  <Grid Margin="0,4">
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="Auto" />
+                      <ColumnDefinition Width="*" />
+                      <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <CheckBox VerticalAlignment="Center" Style="{StaticResource AccentCheck}" IsChecked="{Binding IsIncluded, Mode=TwoWay}" />
+                    <StackPanel Grid.Column="1" Margin="10,0,0,0" Orientation="Horizontal">
+                      <TextBlock VerticalAlignment="Center" Style="{StaticResource Body}" TextTrimming="CharacterEllipsis" Text="{Binding Name}" />
+                      <TextBlock Margin="8,0,0,0" VerticalAlignment="Center" Style="{StaticResource Tag}" Text="{Binding Launcher}" />
+                    </StackPanel>
+                    <Button Grid.Column="2" Padding="6,2" Content="×" Style="{StaticResource GhostButton}" Command="{Binding DataContext.RemoveGameCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" CommandParameter="{Binding}" ToolTip="{loc:Tr common.delete}" Visibility="{Binding IsCustom, Converter={StaticResource BoolToVis}}" />
+                  </Grid>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </StackPanel>
+        </ContentControl>
+      </StackPanel>
+    </Grid>
+  </ScrollViewer>
+</UserControl>

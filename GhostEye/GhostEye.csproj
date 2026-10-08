@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>GhostEye</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <Nullable>annotations</Nullable>
+    <OutputType>WinExe</OutputType>
+    <UseWPF>True</UseWPF>
+    <UseWindowsForms>True</UseWindowsForms>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>14.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <RootNamespace />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="GhostEye.Tools.PresentMon.exe" />
+    <EmbeddedResource Include="GhostEye.Tools.PresentMon.exe" LogicalName="GhostEye.Tools.PresentMon.exe" />
+    <ApplicationDefinition Remove="GhostEye\App\App.xaml" />
+    <ApplicationDefinition Include="GhostEye\App\App.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="app.xaml" />
+    <Page Remove="GhostEye\App\Controls\InfoTip.xaml" />
+    <Page Remove="GhostEye\App\Controls\SpinningLogo.xaml" />
+    <Page Remove="GhostEye\App\Controls\TweakCategoryPanel.xaml" />
+    <Page Remove="GhostEye\App\ShellView.xaml" />
+    <Page Remove="GhostEye\App\ShellWindow.xaml" />
+    <Page Remove="GhostEye\App\Views\AnalyzerView.xaml" />
+    <Page Remove="GhostEye\App\Views\AppsView.xaml" />
+    <Page Remove="GhostEye\App\Views\CleanupView.xaml" />
+    <Page Remove="GhostEye\App\Views\DashboardView.xaml" />
+    <Page Remove="GhostEye\App\Views\DiskView.xaml" />
+    <Page Remove="GhostEye\App\Views\GamingView.xaml" />
+    <Page Remove="GhostEye\App\Views\HealthView.xaml" />
+    <Page Remove="GhostEye\App\Views\HistoryView.xaml" />
+    <Page Remove="GhostEye\App\Views\NetworkView.xaml" />
+    <Page Remove="GhostEye\App\Views\OptimizeView.xaml" />
+    <Page Remove="GhostEye\App\Views\PrivacyView.xaml" />
+    <Page Remove="GhostEye\App\Views\ServicesView.xaml" />
+    <Page Remove="GhostEye\App\Views\SettingsView.xaml" />
+    <Page Remove="GhostEye\App\Views\SoftwareView.xaml" />
+    <Page Remove="GhostEye\App\Views\StartupView.xaml" />
+    <Page Remove="GhostEye\App\Views\ToolsView.xaml" />
+    <Page Remove="themes\controls.xaml" />
+    <Page Remove="themes\icons.xaml" />
+    <Page Remove="themes\palette.xaml" />
+    <Page Remove="themes\typography.xaml" />
+    <Page Include="GhostEye\App\Controls\InfoTip.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="controls/infotip.xaml" />
+    <Page Include="GhostEye\App\Controls\SpinningLogo.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="controls/spinninglogo.xaml" />
+    <Page Include="GhostEye\App\Controls\TweakCategoryPanel.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="controls/tweakcategorypanel.xaml" />
+    <Page Include="GhostEye\App\ShellView.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="shellview.xaml" />
+    <Page Include="GhostEye\App\ShellWindow.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="shellwindow.xaml" />
+    <Page Include="GhostEye\App\Views\AnalyzerView.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="views/analyzerview.xaml" />
+    <Page Include="GhostEye\App\Views\AppsView.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="views/appsview.xaml" />
+    <Page Include="GhostEye\App\Views\CleanupView.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="views/cleanupview.xaml" />
+    <Page Include="GhostEye\App\Views\DashboardView.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="views/dashboardview.xaml" />
+    <Page Include="GhostEye\App\Views\DiskView.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="views/diskview.xaml" />
+    <Page Include="GhostEye\App\Views\GamingView.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="views/gamingview.xaml" />
+    <Page Include="GhostEye\App\Views\HealthView.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="views/healthview.xaml" />
+    <Page Include="GhostEye\App\Views\HistoryView.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="views/historyview.xaml" />
+    <Page Include="GhostEye\App\Views\NetworkView.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="views/networkview.xaml" />
+    <Page Include="GhostEye\App\Views\OptimizeView.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="views/optimizeview.xaml" />
+    <Page Include="GhostEye\App\Views\PrivacyView.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="views/privacyview.xaml" />
+    <Page Include="GhostEye\App\Views\ServicesView.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="views/servicesview.xaml" />
+    <Page Include="GhostEye\App\Views\SettingsView.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="views/settingsview.xaml" />
+    <Page Include="GhostEye\App\Views\SoftwareView.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="views/softwareview.xaml" />
+    <Page Include="GhostEye\App\Views\StartupView.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="views/startupview.xaml" />
+    <Page Include="GhostEye\App\Views\ToolsView.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="views/toolsview.xaml" />
+    <Page Include="themes\controls.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="themes/controls.xaml" />
+    <Page Include="themes\icons.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="themes/icons.xaml" />
+    <Page Include="themes\palette.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="themes/palette.xaml" />
+    <Page Include="themes\typography.xaml" Generator="MSBuild:Compile" SubType="Designer" LogicalName="themes/typography.xaml" />
+    <Resource Remove="assets\fonts\inter-medium.ttf" />
+    <Resource Remove="assets\fonts\inter-regular.ttf" />
+    <Resource Remove="assets\fonts\inter-semibold.ttf" />
+    <Resource Remove="assets\fonts\jetbrainsmono-medium.ttf" />
+    <Resource Remove="assets\fonts\spacegrotesk-bold.ttf" />
+    <Resource Remove="assets\licenses\communitytoolkit-license.txt" />
+    <Resource Remove="assets\licenses\communitytoolkit-third-party-notices.txt" />
+    <Resource Remove="assets\licenses\dotnet-license.txt" />
+    <Resource Remove="assets\licenses\dotnet-third-party-notices.txt" />
+    <Resource Remove="assets\licenses\mit-presentmon.txt" />
+    <Resource Remove="assets\licenses\ofl-inter.txt" />
+    <Resource Remove="assets\licenses\ofl-jetbrainsmono.txt" />
+    <Resource Remove="assets\licenses\ofl-spacegrotesk.txt" />
+    <Resource Remove="assets\licenses\winforms-license.txt" />
+    <Resource Remove="assets\licenses\wpf-license.txt" />
+    <Resource Remove="assets\licenses\wpf-third-party-notices.txt" />
+    <Resource Remove="assets\logo-edge.png" />
+    <Resource Remove="assets\logo.png" />
+    <Resource Include="assets\fonts\inter-medium.ttf" LogicalName="assets/fonts/inter-medium.ttf" />
+    <Resource Include="assets\fonts\inter-regular.ttf" LogicalName="assets/fonts/inter-regular.ttf" />
+    <Resource Include="assets\fonts\inter-semibold.ttf" LogicalName="assets/fonts/inter-semibold.ttf" />
+    <Resource Include="assets\fonts\jetbrainsmono-medium.ttf" LogicalName="assets/fonts/jetbrainsmono-medium.ttf" />
+    <Resource Include="assets\fonts\spacegrotesk-bold.ttf" LogicalName="assets/fonts/spacegrotesk-bold.ttf" />
+    <Resource Include="assets\licenses\communitytoolkit-license.txt" LogicalName="assets/licenses/communitytoolkit-license.txt" />
+    <Resource Include="assets\licenses\communitytoolkit-third-party-notices.txt" LogicalName="assets/licenses/communitytoolkit-third-party-notices.txt" />
+    <Resource Include="assets\licenses\dotnet-license.txt" LogicalName="assets/licenses/dotnet-license.txt" />
+    <Resource Include="assets\licenses\dotnet-third-party-notices.txt" LogicalName="assets/licenses/dotnet-third-party-notices.txt" />
+    <Resource Include="assets\licenses\mit-presentmon.txt" LogicalName="assets/licenses/mit-presentmon.txt" />
+    <Resource Include="assets\licenses\ofl-inter.txt" LogicalName="assets/licenses/ofl-inter.txt" />
+    <Resource Include="assets\licenses\ofl-jetbrainsmono.txt" LogicalName="assets/licenses/ofl-jetbrainsmono.txt" />
+    <Resource Include="assets\licenses\ofl-spacegrotesk.txt" LogicalName="assets/licenses/ofl-spacegrotesk.txt" />
+    <Resource Include="assets\licenses\winforms-license.txt" LogicalName="assets/licenses/winforms-license.txt" />
+    <Resource Include="assets\licenses\wpf-license.txt" LogicalName="assets/licenses/wpf-license.txt" />
+    <Resource Include="assets\licenses\wpf-third-party-notices.txt" LogicalName="assets/licenses/wpf-third-party-notices.txt" />
+    <Resource Include="assets\logo-edge.png" LogicalName="assets/logo-edge.png" />
+    <Resource Include="assets\logo.png" LogicalName="assets/logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GhostEye.Core\GhostEye.Core.csproj" />
+    <ProjectReference Include="..\GhostEye.Infrastructure\GhostEye.Infrastructure.csproj" />
+    <ProjectReference Include="..\GhostEye.Backup\GhostEye.Backup.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- The exported view models already contain their generated MVVM members. -->
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" ExcludeAssets="analyzers;build;buildTransitive" />
+  </ItemGroup>
+  <Target Name="RemoveExportedMvvmGenerators" BeforeTargets="CoreCompile;GenerateTemporaryTargetAssembly">
+    <ItemGroup>
+      <Analyzer Remove="@(Analyzer)" Condition="'%(Analyzer.Filename)' == 'CommunityToolkit.Mvvm.SourceGenerators'" />
+    </ItemGroup>
+  </Target>
+</Project>

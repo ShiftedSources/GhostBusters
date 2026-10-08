@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>GhostEye.Core</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <Nullable>annotations</Nullable>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>14.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="GhostEye.Core.Localization.Strings.de.json" />
+    <None Remove="GhostEye.Core.Localization.Strings.en.json" />
+    <None Remove="GhostEye.Core.Localization.Strings.es.json" />
+    <None Remove="GhostEye.Core.Localization.Strings.fr.json" />
+    <None Remove="GhostEye.Core.Localization.Strings.it.json" />
+    <None Remove="GhostEye.Core.Localization.Strings.pl.json" />
+    <None Remove="GhostEye.Core.Localization.Strings.pt.json" />
+    <!-- Localizer reads these JSON tables directly from the main assembly. -->
+    <EmbeddedResource Include="GhostEye.Core.Localization.Strings.de.json" LogicalName="GhostEye.Core.Localization.Strings.de.json" WithCulture="false" />
+    <EmbeddedResource Include="GhostEye.Core.Localization.Strings.en.json" LogicalName="GhostEye.Core.Localization.Strings.en.json" WithCulture="false" />
+    <EmbeddedResource Include="GhostEye.Core.Localization.Strings.es.json" LogicalName="GhostEye.Core.Localization.Strings.es.json" WithCulture="false" />
+    <EmbeddedResource Include="GhostEye.Core.Localization.Strings.fr.json" LogicalName="GhostEye.Core.Localization.Strings.fr.json" WithCulture="false" />
+    <EmbeddedResource Include="GhostEye.Core.Localization.Strings.it.json" LogicalName="GhostEye.Core.Localization.Strings.it.json" WithCulture="false" />
+    <EmbeddedResource Include="GhostEye.Core.Localization.Strings.pl.json" LogicalName="GhostEye.Core.Localization.Strings.pl.json" WithCulture="false" />
+    <EmbeddedResource Include="GhostEye.Core.Localization.Strings.pt.json" LogicalName="GhostEye.Core.Localization.Strings.pt.json" WithCulture="false" />
+  </ItemGroup>
+</Project>

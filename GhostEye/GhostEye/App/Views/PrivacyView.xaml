@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="GhostEye.App.Views.PrivacyView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:loc="clr-namespace:GhostEye.App.Localization" xmlns:controls="clr-namespace:GhostEye.App.Controls" xmlns:views="clr-namespace:GhostEye.App.Views">
+  <ScrollViewer Padding="0,0,8,20">
+    <StackPanel>
+      <controls:TweakCategoryPanel Category="{Binding Category}" />
+      <ContentControl Margin="0,16,0,0" Padding="18,14" Style="{StaticResource Card}">
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+          </Grid.ColumnDefinitions>
+          <StackPanel VerticalAlignment="Center" Margin="0,0,16,0">
+            <TextBlock Style="{StaticResource Body}" Text="{Binding SelectionSummary}" Visibility="{Binding SelectionSummary, Converter={StaticResource StringToVis}}" />
+            <TextBlock Margin="0,3,0,0" Style="{StaticResource Caption}" Foreground="{StaticResource AccentBrush}" Text="{Binding ResultMessage}" Visibility="{Binding ResultMessage, Converter={StaticResource StringToVis}}" />
+          </StackPanel>
+          <Button Grid.Column="1" Style="{StaticResource PrimaryButton}" Command="{Binding ApplyCommand}" Content="{loc:Tr common.apply}" IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBool}}" />
+        </Grid>
+      </ContentControl>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

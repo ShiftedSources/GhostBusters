@@ -1,0 +1,45 @@
+# .NET build and publish output
+[Bb]in/
+[Oo]bj/
+/.build-check/
+/dist/
+/artifacts/
+
+# Visual Studio and Rider local state
+.vs/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+*.DotSettings.user
+*.pubxml.user
+
+# Test results and diagnostics
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+*.trx
+*.log
+*.binlog
+
+# Local environment and private signing material
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pfx
+*.p12
+
+# Editor temporary files
+*.tmp
+*.swp
+*.swo
+*~
+
+# Windows and macOS metadata
+Thumbs.db
+Desktop.ini
+.DS_Store
